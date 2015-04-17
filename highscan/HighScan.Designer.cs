@@ -31,7 +31,7 @@
             this.lblSell = new System.Windows.Forms.Label();
             this.lblBuy = new System.Windows.Forms.Label();
             this.copyUrl = new System.Windows.Forms.Button();
-            this.clipboardMonitor1 = new HighScan.ClipboardMonitor();
+            this.clipboardMonitor1 = new ClipboardMonitor();
             this.SuspendLayout();
             // 
             // lblSell
@@ -75,7 +75,7 @@
             this.clipboardMonitor1.TabIndex = 1;
             this.clipboardMonitor1.Text = "clipboardMonitor1";
             this.clipboardMonitor1.Visible = false;
-            this.clipboardMonitor1.ClipboardChanged += new System.EventHandler<HighScan.ClipboardChangedEventArgs>(this.clipboardMonitor1_ClipboardChanged);
+            this.clipboardMonitor1.ClipboardChanged += new System.EventHandler<ClipboardChangedEventArgs>(this.clipboardMonitor1_ClipboardChanged);
             // 
             // Form1
             // 
