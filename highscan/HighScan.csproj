@@ -7,7 +7,7 @@
     <ProjectGuid>{69DCE920-6190-47B7-8C3F-EDBB8EF879FA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>highscan</RootNamespace>
+    <RootNamespace>HighScan</RootNamespace>
     <AssemblyName>highscan</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,17 +50,17 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Clipboard\ClipboardParser.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="HighScan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="HighScan.Designer.cs">
+      <DependentUpon>HighScan.cs</DependentUpon>
     </Compile>
     <Compile Include="Clipboard\ParseResults.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="HighScan.resx">
+      <DependentUpon>HighScan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -70,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
