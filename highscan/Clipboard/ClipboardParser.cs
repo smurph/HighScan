@@ -119,6 +119,7 @@ namespace HighScan
 
         private void parseBuySell(string response)
         {
+            // Regex pattern courtesy of Noah Johansen
             Match m = Regex.Match(response, @"(\d+(?:\.\d+ )?.* ISK)");
             List<string> result = new List<string>();
             while (m.Success)
@@ -131,6 +132,7 @@ namespace HighScan
 
         private void parseVolume(string response)
         {
+            // Regex pattern courtesy of Noah Johansen
             Match m = Regex.Match(response, @"(>.*m<sup>3)");
             string s = string.Empty;
             if (m.Success)
@@ -142,6 +144,7 @@ namespace HighScan
 
         private void parseUrl(string response)
         {
+            // Regex pattern courtesy of Noah Johansen
             Match m = Regex.Match(response, @"(http://www\.evepraisal\.com/e/\d+)");
             string result = string.Empty;
             if (m.Success)
