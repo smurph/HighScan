@@ -32,6 +32,7 @@
             this.lblBuy = new System.Windows.Forms.Label();
             this.copyUrl = new System.Windows.Forms.Button();
             this.clipboardMonitor1 = new ClipboardMonitor();
+            this.lblVolumeStacks = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblSell
@@ -69,7 +70,7 @@
             // clipboardMonitor1
             // 
             this.clipboardMonitor1.BackColor = System.Drawing.Color.Red;
-            this.clipboardMonitor1.Location = new System.Drawing.Point(274, 110);
+            this.clipboardMonitor1.Location = new System.Drawing.Point(-9, 119);
             this.clipboardMonitor1.Name = "clipboardMonitor1";
             this.clipboardMonitor1.Size = new System.Drawing.Size(75, 23);
             this.clipboardMonitor1.TabIndex = 1;
@@ -77,11 +78,22 @@
             this.clipboardMonitor1.Visible = false;
             this.clipboardMonitor1.ClipboardChanged += new System.EventHandler<ClipboardChangedEventArgs>(this.clipboardMonitor1_ClipboardChanged);
             // 
+            // lblVolumeStacks
+            // 
+            this.lblVolumeStacks.AutoSize = true;
+            this.lblVolumeStacks.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVolumeStacks.Location = new System.Drawing.Point(148, 87);
+            this.lblVolumeStacks.Name = "lblVolumeStacks";
+            this.lblVolumeStacks.Size = new System.Drawing.Size(147, 24);
+            this.lblVolumeStacks.TabIndex = 6;
+            this.lblVolumeStacks.Text = "0 stacks / 0 m3";
+            // 
             // HighScan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 136);
+            this.Controls.Add(this.lblVolumeStacks);
             this.Controls.Add(this.copyUrl);
             this.Controls.Add(this.lblBuy);
             this.Controls.Add(this.lblSell);
@@ -100,6 +112,7 @@
         private System.Windows.Forms.Label lblSell;
         private System.Windows.Forms.Label lblBuy;
         private System.Windows.Forms.Button copyUrl;
+        private System.Windows.Forms.Label lblVolumeStacks;
     }
 }
 

@@ -32,6 +32,8 @@ namespace HighScan
 
                     parseUrl(responseString);
 
+                    parseStacks(clip);
+
                     if (!string.IsNullOrWhiteSpace(Volume))
                         Success = true;
 
@@ -77,11 +79,13 @@ namespace HighScan
 
         public bool Success { get; private set; }
 
+        public int Stacks { get; private set; }
+
         #endregion Public Properties
 
         private ParseResults makeResults()
         {
-            return new ParseResults(BuyValue, SellValue, Url, Volume, Success);
+            return new ParseResults(BuyValue, SellValue, Url, Volume, Stacks, Success);
         }
 
         private void reset()
@@ -92,6 +96,7 @@ namespace HighScan
             Success = false;
         }
 
+        #region Parsers
         private void parseBuySell(string response)
         {
             // Regex pattern courtesy of Noah Johansen
@@ -128,5 +133,12 @@ namespace HighScan
             }
             Url = result;
         }
+
+        private void parseStacks(string input)
+        {
+            Stacks = input.Split('\n').Length;
+        }
+
+        #endregion
     }
 }

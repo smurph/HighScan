@@ -2,58 +2,36 @@
 {
     internal class ParseResults
     {
-        private string _buyValue;
-        private string _sellValue;
-        private string _url;
-        private string _volume;
-        private bool _success;
-
-        public ParseResults(string buyValue, string sellValue, string url, string volume, bool success)
+        public ParseResults(string buyValue, string sellValue, string url, string volume, int stacks, bool success)
         {
-            _buyValue = buyValue;
-            _sellValue = sellValue;
-            _url = url;
-            _volume = volume;
-            _success = success;
+            BuyValue = buyValue;
+            SellValue = sellValue;
+            Url = url;
+            Volume = volume;
+            Stacks = stacks;
+            Success = success;
         }
 
         public ParseResults()
         {
-            _buyValue = string.Empty;
-            _sellValue = string.Empty;
-            _url = string.Empty;
-            _volume = string.Empty;
-            _success = false;
+            BuyValue = string.Empty;
+            SellValue = string.Empty;
+            Url = string.Empty;
+            Volume = string.Empty;
+            Stacks = -1;
+            Success = false;
         }
 
-        public string BuyValue
-        {
-            get { return _buyValue; }
-            set { _buyValue = value; }
-        }
+        public string BuyValue { get; set; }
 
-        public string SellValue
-        {
-            get { return _sellValue; }
-            set { _sellValue = value; }
-        }
+        public string SellValue { get; set; }
 
-        public string Volume
-        {
-            get { return _volume; }
-            set { _volume = value; }
-        }
+        public string Volume { get; set; }
 
-        public string Url
-        {
-            get { return _url; }
-            set { _url = value; }
-        }
+        public string Url { get; set; }
 
-        public bool Success
-        {
-            get { return _success; }
-            set { _success = value; }
-        }
+        public int Stacks { get; set; }
+
+        public bool Success { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace HighScan
             {
                 lblBuy.Text = String.Format("{0} Buy", results.BuyValue);
                 lblSell.Text = String.Format("{0} Sell", results.SellValue);
+                lblVolumeStacks.Text = String.Format("{0} stacks / {1} m3", results.Stacks, results.Volume);
             }
         }
 
