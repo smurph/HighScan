@@ -5,13 +5,9 @@ using System.Threading.Tasks;
 
 namespace HighScan
 {
-    class ClipboardParser
+    internal class ClipboardParser
     {
-
         private List<string> _buySellInfo = new List<string>();
-        private string _volume = string.Empty;
-        private string _url = string.Empty;
-        private bool _success = false;
 
         public async Task<ParseResults> Parse(string clip)
         {
@@ -36,8 +32,8 @@ namespace HighScan
 
                     parseUrl(responseString);
 
-                    if (!string.IsNullOrWhiteSpace(_volume))
-                        _success = true;
+                    if (!string.IsNullOrWhiteSpace(Volume))
+                        Success = true;
 
                     return makeResults();
                 }
@@ -65,7 +61,6 @@ namespace HighScan
         {
             get
             {
-
                 string s = string.Empty;
                 try
                 {
@@ -76,42 +71,25 @@ namespace HighScan
             }
         }
 
-        public string Url
-        {
-            get
-            {
-                return _url;
-            }
-        }
+        public string Url { get; private set; }
 
-        public string Volume
-        {
-            get
-            {
-                return _volume;
-            }
-        }
+        public string Volume { get; private set; }
 
-        public bool Success
-        {
-            get
-            {
-                return _success;
-            }
-        }
+        public bool Success { get; private set; }
 
-        #endregion
+        #endregion Public Properties
 
         private ParseResults makeResults()
         {
             return new ParseResults(BuyValue, SellValue, Url, Volume, Success);
         }
 
-        private void reset(){
+        private void reset()
+        {
             _buySellInfo = new List<string>();
-            _volume = string.Empty;
-            _url = string.Empty;
-            _success = false;
+            Volume = string.Empty;
+            Url = string.Empty;
+            Success = false;
         }
 
         private void parseBuySell(string response)
@@ -136,7 +114,7 @@ namespace HighScan
             {
                 s = m.Value.Substring(1, m.Value.Length - 8);
             }
-            _volume = s;
+            Volume = s;
         }
 
         private void parseUrl(string response)
@@ -148,7 +126,7 @@ namespace HighScan
             {
                 result = m.Value;
             }
-            _url = result;
+            Url = result;
         }
     }
 }

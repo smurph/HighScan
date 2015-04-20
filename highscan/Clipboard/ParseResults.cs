@@ -1,7 +1,6 @@
-﻿
-namespace HighScan
+﻿namespace HighScan
 {
-    class ParseResults
+    internal class ParseResults
     {
         private string _buyValue;
         private string _sellValue;
@@ -56,7 +55,5 @@ namespace HighScan
             get { return _success; }
             set { _success = value; }
         }
-
-
     }
 }

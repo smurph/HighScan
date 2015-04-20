@@ -77,7 +77,7 @@
             this.clipboardMonitor1.Visible = false;
             this.clipboardMonitor1.ClipboardChanged += new System.EventHandler<ClipboardChangedEventArgs>(this.clipboardMonitor1_ClipboardChanged);
             // 
-            // Form1
+            // HighScan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -86,8 +86,9 @@
             this.Controls.Add(this.lblBuy);
             this.Controls.Add(this.lblSell);
             this.Controls.Add(this.clipboardMonitor1);
-            this.Name = "Form1";
+            this.Name = "HighScan";
             this.Text = "High Scan";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

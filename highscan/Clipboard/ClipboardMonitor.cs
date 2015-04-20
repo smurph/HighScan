@@ -1,9 +1,9 @@
 ﻿/********************************************
- * 
+ *
  * Author: dbkk (http://stackoverflow.com/users/838/dbkk)
- * 
+ *
  * Source: http://stackoverflow.com/a/1394225
- * 
+ *
  ********************************************/
 
 using System;
@@ -17,7 +17,7 @@ namespace HighScan
     [DefaultEvent("ClipboardChanged")]
     public partial class ClipboardMonitor : Control
     {
-        IntPtr nextClipboardViewer;
+        private IntPtr nextClipboardViewer;
 
         public ClipboardMonitor()
         {
@@ -69,7 +69,7 @@ namespace HighScan
             }
         }
 
-        void OnClipboardChanged()
+        private void OnClipboardChanged()
         {
             try
             {
@@ -78,7 +78,6 @@ namespace HighScan
                 {
                     ClipboardChanged(this, new ClipboardChangedEventArgs(iData));
                 }
-
             }
             catch { }
         }
