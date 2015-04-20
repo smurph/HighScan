@@ -1,6 +1,6 @@
 # HighScan
 
-![Screenshot](http://i.imgur.com/IcTsQZQ.png "Screenshot")
+![Screenshot](http://i.imgur.com/9xF0rza.png "Screenshot")
 
 Short for **High**sec **Scan**ner, HighScan is a tool to assist Eve Online players with ship cargo scanning and appraisal. 
 
