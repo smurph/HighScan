@@ -98,7 +98,11 @@
             this.Controls.Add(this.lblBuy);
             this.Controls.Add(this.lblSell);
             this.Controls.Add(this.clipboardMonitor1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(414, 174);
+            this.MinimumSize = new System.Drawing.Size(414, 174);
             this.Name = "HighScan";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "High Scan";
             this.TopMost = true;
             this.ResumeLayout(false);
