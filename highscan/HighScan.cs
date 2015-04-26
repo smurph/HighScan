@@ -17,23 +17,23 @@ namespace HighScan
         private async void clipboardMonitor1_ClipboardChanged(object sender, ClipboardChangedEventArgs e)
         {
             ParseResults results = await parser.Parse(Clipboard.GetText());
-            updateLabels(results);
+            updateLabels(ref results);
         }
 
-        private void updateLabels(ParseResults results)
+        private void updateLabels(ref ParseResults results)
         {
             if (results.Success)
             {
-                updateBuyLabel(results);
-                updateSellLabel(results);
-                updateVolumeStacksLabel(results);
-                updateCopyUrlButton(results);
+                updateBuyLabel(ref results);
+                updateSellLabel(ref results);
+                updateVolumeStacksLabel(ref results);
+                updateCopyUrlButton(ref results);
             }
             else
                 resetLabels();
         }
 
-        private void updateCopyUrlButton(ParseResults results)
+        private void updateCopyUrlButton(ref ParseResults results)
         {
             if (results.Success)
             {
@@ -47,35 +47,35 @@ namespace HighScan
             }
         }
 
-        private void updateVolumeStacksLabel(ParseResults results)
+        private void updateVolumeStacksLabel(ref ParseResults results)
         {
             lblVolumeStacks.Text = String.Format("{0} stacks / {1} m3", results.Stacks, results.Volume);
         }
 
-        private void updateBuyLabel(ParseResults results)
+        private void updateBuyLabel(ref ParseResults results)
         {
             lblBuy.Text = String.Format("{0} Buy", results.BuyValue);
         }
 
-        private void updateSellLabel(ParseResults results)
+        private void updateSellLabel(ref ParseResults results)
         {
             lblSell.Text = String.Format("{0} Sell", results.SellValue);
         }
 
         private void resetLabels()
         {
-            ParseResults results = new ParseResults("0 ISK", "0 ISK", string.Empty, "0", 0, false);
-            updateBuyLabel(results);
-            updateSellLabel(results);
-            updateVolumeStacksLabel(results);
-            updateCopyUrlButton(results);
+            ParseResults results = new ParseResults();
+            updateBuyLabel(ref results);
+            updateSellLabel(ref results);
+            updateVolumeStacksLabel(ref results);
+            updateCopyUrlButton(ref results);
         }
 
         private void copyUrl_Click(object sender, EventArgs e)
         {
-            if (parser.Success)
+            if (parser.LastParseResult.Success)
             {
-                Clipboard.SetText(parser.Url);
+                Clipboard.SetText(parser.LastParseResult.Url);
             }
         }
     }

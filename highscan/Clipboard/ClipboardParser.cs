@@ -7,8 +7,6 @@ namespace HighScan
 {
     internal class ClipboardParser
     {
-        private List<string> _buySellInfo = new List<string>();
-
         public async Task<ParseResults> Parse(string clip)
         {
             reset();
@@ -26,18 +24,21 @@ namespace HighScan
 
                     var responseString = await response.Content.ReadAsStringAsync();
 
-                    parseBuySell(responseString);
+                    List<string> buySell = parseBuySell(responseString);
 
-                    parseVolume(responseString);
+                    string volume = parseVolume(responseString);
 
-                    parseUrl(responseString);
+                    string url = parseUrl(responseString);
 
-                    parseStacks(clip);
+                    int stacks = parseStacks(clip);
 
-                    if (!string.IsNullOrWhiteSpace(Volume))
-                        Success = true;
+                    bool success = false; 
+                    if (!string.IsNullOrWhiteSpace(volume))
+                        success = true;
 
-                    return makeResults();
+                    LastParseResult = new ParseResults(buySell[0], buySell[1], url, volume, stacks, success);
+
+                    return LastParseResult;
                 }
             }
             return new ParseResults();
@@ -45,72 +46,35 @@ namespace HighScan
 
         #region Public Properties
 
-        public string BuyValue
-        {
-            get
-            {
-                string s = string.Empty;
-                try
-                {
-                    s = _buySellInfo[1];
-                }
-                catch { }
-                return s;
-            }
-        }
-
-        public string SellValue
-        {
-            get
-            {
-                string s = string.Empty;
-                try
-                {
-                    s = _buySellInfo[0];
-                }
-                catch { }
-                return s;
-            }
-        }
-
-        public string Url { get; private set; }
-
-        public string Volume { get; private set; }
-
-        public bool Success { get; private set; }
-
-        public int Stacks { get; private set; }
+        public ParseResults LastParseResult { get; private set; }
 
         #endregion Public Properties
 
-        private ParseResults makeResults()
-        {
-            return new ParseResults(BuyValue, SellValue, Url, Volume, Stacks, Success);
-        }
-
         private void reset()
         {
-            _buySellInfo = new List<string>();
-            Volume = string.Empty;
-            Url = string.Empty;
-            Success = false;
+            LastParseResult = new ParseResults();
         }
 
         #region Parsers
-        private void parseBuySell(string response)
+        private List<string> parseBuySell(string response)
         {
             // Regex pattern courtesy of Noah Johansen
             Match m = Regex.Match(response, @"(\d+(?:\.\d+ )?.* ISK)");
             List<string> result = new List<string>();
+            if (!m.Success)
+            {
+                result.Add("0 ISK");
+                result.Add("0 ISK");
+            }
             while (m.Success)
             {
                 result.Add(m.Value);
                 m = m.NextMatch();
             }
-            _buySellInfo = result;
+            return result;
         }
 
-        private void parseVolume(string response)
+        private string parseVolume(string response)
         {
             // Regex pattern courtesy of Noah Johansen
             Match m = Regex.Match(response, @"(>.*m<sup>3)");
@@ -119,10 +83,10 @@ namespace HighScan
             {
                 s = m.Value.Substring(1, m.Value.Length - 8);
             }
-            Volume = s;
+            return s;
         }
 
-        private void parseUrl(string response)
+        private string parseUrl(string response)
         {
             // Regex pattern courtesy of Noah Johansen
             Match m = Regex.Match(response, @"(http://www\.evepraisal\.com/e/\d+)");
@@ -131,12 +95,12 @@ namespace HighScan
             {
                 result = m.Value;
             }
-            Url = result;
+            return result;
         }
 
-        private void parseStacks(string input)
+        private int parseStacks(string input)
         {
-            Stacks = input.Split('\n').Length;
+            return input.Split('\n').Length;
         }
 
         #endregion

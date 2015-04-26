@@ -14,11 +14,11 @@
 
         public ParseResults()
         {
-            BuyValue = string.Empty;
-            SellValue = string.Empty;
+            BuyValue = "0 ISK";
+            SellValue = "0 ISK";
             Url = string.Empty;
-            Volume = string.Empty;
-            Stacks = -1;
+            Volume = "0";
+            Stacks = 0;
             Success = false;
         }
 
